@@ -20,6 +20,7 @@ struct ContentView: View {
     @State var baseMulti: Int = 1
     //MARK: Stored Properties Division
     @State var base4: Int = 1
+    @State var baseDivide: Int = 1
     
     //MARK: Computed potatos. Properties
     //Addition
@@ -34,7 +35,10 @@ struct ContentView: View {
     var multiplication: Int {
         return base3 * baseMulti
     }
-    
+    //Division
+    var division: Int {
+        return base4 / baseDivide
+    }
     
     var body: some View {
         TabView {
@@ -193,8 +197,50 @@ struct ContentView: View {
                  // Division tab
                  NavigationView {
                      VStack {
-                         Text("Division")
-                         //division content
+                         //First Number
+                         HStack {
+                            Spacer()
+                             Text("\(base4)")
+                                 .font(.system(size: 72))
+                                 .padding()
+                         }
+                         //Stepper First Number
+                         HStack {
+                             Stepper(value: $base4, label: {
+                                 Text("Select first number")
+                             })
+                             .padding()
+                         }
+                         //Second Number
+                         HStack {
+                             Image(systemName: "divide")
+                                 .font(.system(size: 60))
+                             Spacer()
+                             if baseDivide > 0 {
+                                 Text("\(baseDivide)")
+                                     .font(.system(size: 72))
+                             } else {
+                                 Text("Error")
+                                     .font(.system(size: 72))
+                             }
+                         }
+                         .padding()
+                         //Stepper Second Number
+                         HStack {
+                             Stepper(value: $baseDivide, label: {
+                                 Text("Select first number")
+                             })
+                             .padding()
+                         }
+                         //Answer
+                         HStack {
+                            Spacer()
+                             Text("\(division)")
+                                 .font(.system(size: 72))
+                                 .padding()
+                         }
+                         
+                        
                      }
                  }
                  .tabItem {
