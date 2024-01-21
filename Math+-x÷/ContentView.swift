@@ -17,6 +17,7 @@ struct ContentView: View {
     @State var baseSub: Int = 1
     //MARK: Stored Properties Multiplication
     @State var base3: Int = 1
+    @State var baseMulti: Int = 1
     //MARK: Stored Properties Division
     @State var base4: Int = 1
     
@@ -28,6 +29,10 @@ struct ContentView: View {
     //Subtraction
     var subtaction: Int {
         return base2 - baseSub
+    }
+    //Multiplication
+    var multiplication: Int {
+        return base3 * baseMulti
     }
     
     
@@ -104,6 +109,8 @@ struct ContentView: View {
                          }
                          //Second Number
                          HStack {
+                             Image(systemName: "minus")
+                                 .font(.system(size: 60))
                              Spacer()
                              Text("\(baseSub)")
                                  .font(.system(size: 72))
@@ -136,8 +143,45 @@ struct ContentView: View {
                  // Multiplication tab
                  NavigationView {
                      VStack {
-                         Text("Multiplication")
-                         //multiplication content
+                         //First Number
+                         HStack {
+                            Spacer()
+                             Text("\(base3)")
+                                 .font(.system(size: 72))
+                                 .padding()
+                         }
+                         //Stepper First Number
+                         HStack {
+                             Stepper(value: $base3, label: {
+                                 Text("Select first number")
+                             })
+                             .padding()
+                         }
+                         //Second Number
+                         HStack {
+                             Image(systemName: "multiply")
+                                 .font(.system(size: 60))
+                             Spacer()
+                             Text("\(baseMulti)")
+                                 .font(.system(size: 72))
+                                 .padding()
+                         }
+                         //Stepper Second Number
+                         HStack {
+                             Stepper(value: $baseMulti, label: {
+                                 Text("Select first number")
+                             })
+                             .padding()
+                         }
+                         //Answer
+                         HStack {
+                            Spacer()
+                             Text("\(multiplication)")
+                                 .font(.system(size: 72))
+                                 .padding()
+                         }
+                         
+                        
                      }
                  }
                  .tabItem {
